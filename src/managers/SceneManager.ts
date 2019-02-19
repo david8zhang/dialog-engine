@@ -25,9 +25,9 @@ export class SceneManager implements ISceneManager {
   constructor(config : LooseObject) {
     // initialize renderManager
     const renderManagerParams : RenderManagerParams = {
-      cutSceneRenderer: config.cutSceneRenderer || debugSceneRenderer,
-      dialogSceneRenderer: config.dialogSceneRenderer || debugSceneRenderer,
-      speechLineRenderer: config.speechLineRenderer || debugSceneRenderer
+      cutSceneRenderer: debugSceneRenderer,
+      dialogSceneRenderer: debugSceneRenderer,
+      speechLineRenderer: debugSceneRenderer
     }
     this.renderManager = new RenderManager(renderManagerParams);
     this.characterManager = new CharacterManager(config);
