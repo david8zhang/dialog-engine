@@ -14,9 +14,11 @@ export interface DialogSceneProps {
 
 class DialogScene extends React.Component<DialogSceneProps, {}> {
   render() {
-    const { leftCharacter, rightCharacter, speaker } = this.props.activeSpeechLine;
-    const leftCharObject = this.props.sceneManager.getCharacterById(leftCharacter.id);
-    const rightCharObject = this.props.sceneManager.getCharacterById(rightCharacter.id);
+    const { speaker } = this.props.activeSpeechLine;
+    const leftParams = this.props.activeSpeechLine.leftCharacter;
+    const rightParams = this.props.activeSpeechLine.rightCharacter;
+    const leftCharacter = this.props.sceneManager.getCharacterById(leftParams.id);
+    const rightCharacter = this.props.sceneManager.getCharacterById(rightParams.id);
 
     return (
       <div className='dialogScene'>
@@ -27,15 +29,15 @@ class DialogScene extends React.Component<DialogSceneProps, {}> {
         <SpeechLine
           text={this.props.activeSpeechLine.line}
           side={this.props.activeSpeechLine.speaker}
-          speakerName={speaker === 'left' ? leftCharObject.name : rightCharObject.name}
+          speakerName={speaker === 'left' ? leftCharacter.name : rightCharacter.name}
           gotoNextSpeechLine={() => {
             this.props.activeSpeechLine.gotoNextSpeechLine();
             this.props.update();
           }}
-          rightCharReaction={rightCharacter.reaction}
-          leftCharReaction={leftCharacter.reaction}
-          rightCharacterImages={rightCharObject.reactions}
-          leftCharacterImages={leftCharObject.reactions}
+          rightCharReaction={rightParams.reaction}
+          leftCharReaction={leftParams.reaction}
+          rightCharacterImages={rightCharacter.reactions}
+          leftCharacterImages={leftCharacter.reactions}
         />
       </div>
     )
