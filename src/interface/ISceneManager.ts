@@ -1,3 +1,6 @@
+import { LooseObject } from "./LooseObject";
+
 export interface ISceneManager {
-  render() : void;
+  render() : LooseObject;
+  getCharacterById(id : string) : LooseObject;
 }

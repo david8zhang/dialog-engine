@@ -50,7 +50,7 @@ export class DialogScene implements IAbstractScene {
     return serializedSpeechLines;
   }
 
-  public render() : any {
+  public render() : LooseObject {
     const activeSpeechLine = this.speechLines[this.currentSpeechLineIndex];
     const renderParams = {
       bgImage: this.bgImage,

@@ -5,6 +5,9 @@ import { IAbstractScene } from "../interface/IAbstractScene";
 import { CutScene, CutSceneParams } from "../models/CutScene";
 import { IRenderManager } from "../interface/IRenderManager";
 import { RenderManagerParams, RenderManager } from "./RenderManager";
+import { CharacterManager } from "./CharacterManager";
+import { ICharacterManager } from "../interface/ICharacterManager";
+import { Character } from "../models/Character";
 
 const SceneFactory : LooseObject = {
   dialogScene: DialogScene,
@@ -17,6 +20,7 @@ export class SceneManager implements ISceneManager {
   private scenes : IAbstractScene[];
   private activeSceneIndex : number = 0;
   private renderManager : IRenderManager;
+  private characterManager : ICharacterManager;
 
   constructor(config : LooseObject) {
     // initialize renderManager
@@ -26,6 +30,7 @@ export class SceneManager implements ISceneManager {
       speechLineRenderer: config.speechLineRenderer || debugSceneRenderer
     }
     this.renderManager = new RenderManager(renderManagerParams);
+    this.characterManager = new CharacterManager(config);
     if (config.scenes) this.scenes = this.serializeScenes(config.scenes);
   }
 
@@ -63,11 +68,20 @@ export class SceneManager implements ISceneManager {
     }
   }
 
-  public render() : any {
+  public render() : LooseObject {
     this.scenes.sort((a : IAbstractScene, b : IAbstractScene) => {
       return a.order - b.order;
     })
     const activeScene = this.scenes[this.activeSceneIndex];
     return activeScene.render()
+  }
+
+  public getCharacterById(id : string) : LooseObject {
+    const serializedChar : Character =  this.characterManager.getCharacterById(id);
+    return {
+      name: serializedChar.getName(),
+      reactions: serializedChar.getReactions(),
+      id: serializedChar.getCharacterId
+    }
   }
 }

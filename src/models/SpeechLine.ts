@@ -1,8 +1,8 @@
 import { LooseObject } from "../interface/LooseObject";
 
 export interface SpeechLineParams {
-  leftCharacter : string,
-  rightCharacter : string,
+  leftCharacter: LooseObject,
+  rightCharacter: LooseObject,
   speaker : string,
   line : string,
   renderFunc : Function,
@@ -10,8 +10,8 @@ export interface SpeechLineParams {
 }
 
 export class SpeechLine {
-  private leftCharacter : string;
-  private rightCharacter : string;
+  private leftCharacter : LooseObject;
+  private rightCharacter : LooseObject;
   private speaker : string;
   private line : string;
   private renderFunc : Function;
@@ -34,23 +34,23 @@ export class SpeechLine {
     this.line = line;
   }
 
-  public getRightCharacter() : string {
+  public getRightCharacter() : LooseObject {
     return this.rightCharacter;
   }
 
-  public setRightCharacter(rightCharacter : string) {
+  public setRightCharacter(rightCharacter : LooseObject) {
     this.rightCharacter = rightCharacter
   }
 
-  public getLeftCharacter() : string {
+  public getLeftCharacter() : LooseObject {
     return this.leftCharacter;
   }
 
-  public setLeftCharacter(leftCharacter : string ) {
+  public setLeftCharacter(leftCharacter : LooseObject ) {
     this.leftCharacter = leftCharacter;
   }
 
-  public render() : any {
+  public render() : LooseObject {
     const renderParams = {
       leftCharacter: this.leftCharacter,
       rightCharacter: this.rightCharacter,

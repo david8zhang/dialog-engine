@@ -1,5 +1,6 @@
 import { IAbstractScene } from "../interface/IAbstractScene";
 import { IRenderManager } from "../interface/IRenderManager";
+import { LooseObject } from "../interface/LooseObject";
 
 export interface CutSceneParams {
   bgImage : string,
@@ -32,7 +33,7 @@ export class CutScene implements IAbstractScene {
     this.bgImage = image;
   }
 
-  public render() : any {
+  public render() : LooseObject {
     const params = {
       bgImage: this.bgImage,
       line: this.line,
