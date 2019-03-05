@@ -35,6 +35,7 @@ export class CutScene implements IAbstractScene {
 
   public render() : LooseObject {
     const params = {
+      sceneType: 'cutScene',
       bgImage: this.bgImage,
       line: this.line,
       gotoNextScene: this.gotoNextScene

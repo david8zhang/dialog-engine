@@ -54,6 +54,7 @@ export class DialogScene implements IAbstractScene {
     const activeSpeechLine = this.speechLines[this.currentSpeechLineIndex];
     const renderParams = {
       bgImage: this.bgImage,
+      sceneType: 'dialogScene',
       activeSpeechLine: activeSpeechLine.render()
     }
     return this.renderManager.dialogSceneRenderer(renderParams);

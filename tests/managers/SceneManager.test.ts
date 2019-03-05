@@ -14,7 +14,7 @@ const rightCharacter = {
   id: 'right-1234'
 }
 
-describe('Scene Manager', () => {
+describe.only('Scene Manager', () => {
   it('renders the correct default scene', () => {
     const scenes = [{
       sceneType: 'dialogScene',
@@ -75,6 +75,49 @@ describe('Scene Manager', () => {
 
     expect(mockCutSceneComponent.bgImage).to.equal('background.jpg');
     expect(mockCutSceneComponent.line).to.equal('Cut Scene!');
+  })
+
+  it('renders a choice scene and picks the correct branch path', () => {
+    const scenes = [{
+      sceneType: 'choiceScene',
+      branchOptions: {
+        choice1: [{
+          sceneType: 'dialogScene',
+          speechLines: [{
+            line: 'Hello World!',
+            leftCharacter,
+            rightCharacter,
+            speaker: 'left'
+          }, {
+            line: 'Goodbye World!',
+            leftCharacter,
+            rightCharacter,
+            speaker: 'right'
+          }],
+          bgImage: 'background.jpg'
+        }],
+        choice2: [{
+          sceneType: 'cutScene',
+          bgImage: 'background.jpg',
+          line: 'Cut Scene!'
+        }]
+      },
+      bgImage: 'background.jpg',
+      line: 'Choice!'
+    }];
+    const sceneManagerParams = { scenes }
+    const sceneManager = new SceneManager(sceneManagerParams);
+    const mockComponent = sceneManager.render();
+    mockComponent.chooseBranchOption(scenes[0].branchOptions.choice1);
+    mockComponent.gotoNextScene();
+
+    // Chose the first option, which triggers a dialog Scene
+    const mockDialogSceneComponent = sceneManager.render();
+    expect(mockDialogSceneComponent.bgImage).to.equal('background.jpg');
+    expect(mockDialogSceneComponent.activeSpeechLine.line).to.equal('Hello World!');
+    expect(mockDialogSceneComponent.activeSpeechLine.leftCharacter).to.deep.equal(leftCharacter);
+    expect(mockDialogSceneComponent.activeSpeechLine.rightCharacter).to.equal(rightCharacter);
+    expect(mockDialogSceneComponent.activeSpeechLine.speaker).to.equal('left');
   })
 
   it('works with custom dialog renderers', () => {

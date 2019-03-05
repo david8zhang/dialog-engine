@@ -5,6 +5,7 @@ import DialogBox from '../DialogBox/DialogBox';
 export interface CutSceneProps {
   bgImage: string;
   line: string;
+  update: Function;
 }
 
 class CutScene extends React.Component<CutSceneProps, any> {
@@ -19,7 +20,7 @@ class CutScene extends React.Component<CutSceneProps, any> {
           style={{ position: 'absolute', bottom: '0px', minHeight: '15%' }}
           text={this.props.line}
           isRight={false}
-          gotoNext={() => console.log('')}
+          gotoNext={() => this.props.update()}
         />
       </div>
     )

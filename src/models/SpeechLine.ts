@@ -52,6 +52,7 @@ export class SpeechLine {
 
   public render() : LooseObject {
     const renderParams = {
+      sceneType: 'dialogScene',
       leftCharacter: this.leftCharacter,
       rightCharacter: this.rightCharacter,
       line: this.line,

@@ -25,23 +25,35 @@ class SceneRenderer extends React.Component<SceneRendererProps, {}> {
   }
 
   renderScene(sceneProps : LooseObject) : React.ReactNode {
-    const { activeSpeechLine, bgImage, line } = sceneProps;
-    if (activeSpeechLine) {
-      return (
-        <DialogScene
-          sceneManager={this.sceneManager}
-          activeSpeechLine={activeSpeechLine} 
-          bgImage={bgImage}
-          update={() => this.forceUpdate()}
-        />
-      );
+    const { sceneType, bgImage, line } = sceneProps;
+    switch (sceneType) {
+      case 'dialogScene': {
+        return (
+          <DialogScene
+            sceneManager={this.sceneManager}
+            activeSpeechLine={sceneProps.activeSpeechLine} 
+            bgImage={bgImage}
+            update={() => this.forceUpdate()}
+          />
+        );
+      }
+      case 'cutScene': {
+        return (
+          <CutScene
+            line={line}
+            bgImage={bgImage}
+            update={() => this.forceUpdate()}
+          />
+        )
+      }
+      case 'choiceScene': {
+        return (
+          <div />
+        )
+      }
+      default:
+        return <div />
     }
-    return (
-      <CutScene
-        line={line}
-        bgImage={bgImage}
-      />
-    )
   }
 
   render() {

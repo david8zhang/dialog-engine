@@ -8,10 +8,12 @@ import { RenderManagerParams, RenderManager } from "./RenderManager";
 import { CharacterManager } from "./CharacterManager";
 import { ICharacterManager } from "../interface/ICharacterManager";
 import { Character } from "../models/Character";
+import { ChoiceScene, ChoiceSceneParams } from "../models/ChoiceScene";
 
 const SceneFactory : LooseObject = {
   dialogScene: DialogScene,
-  cutScene: CutScene
+  cutScene: CutScene,
+  choiceScene: ChoiceScene
 }
 
 const debugSceneRenderer = (params : LooseObject) : LooseObject => params;
@@ -34,7 +36,7 @@ export class SceneManager implements ISceneManager {
     if (config.scenes) this.scenes = this.serializeScenes(config.scenes);
   }
 
-  private serializeScenes(scenes : LooseObject[]) {
+  public serializeScenes(scenes : LooseObject[]) {
     return scenes.map((s : LooseObject, index : number) => {
       const { sceneType } = s;
       let sceneParams;
@@ -54,9 +56,28 @@ export class SceneManager implements ISceneManager {
           renderManager: this.renderManager,
           order: index
         } as CutSceneParams;
+      } else if (sceneType === 'choiceScene') {
+        sceneParams = {
+          bgImage: s.bgImage,
+          line: s.line,
+          gotoNextScene: () => this.gotoNextScene(),
+          renderManager: this.renderManager,
+          order: index,
+          addScenes: (scenes : LooseObject[]) => this.addScenes(scenes),
+          branchOptions: s.branchOptions
+        } as ChoiceSceneParams
       }
       return new SceneFactory[sceneType](sceneParams);
     });
+  }
+
+  public _getScenes() : IAbstractScene[] {
+    return this.scenes;
+  }
+
+  public addScenes(scenes : LooseObject[]) {
+    const serializedScenes = this.serializeScenes(scenes);
+    this.scenes = this.scenes.concat(serializedScenes);
   }
 
   private gotoNextScene() : boolean {

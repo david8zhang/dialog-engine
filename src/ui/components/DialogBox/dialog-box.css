@@ -9,6 +9,10 @@
   background-color: white;
 }
 
+.Cursor {
+  display: none !important;
+}
+
 .dialogBoxWrapper p {
   font-family: 'Open Sans', sans-serif;
 }
