@@ -14,7 +14,7 @@ const rightCharacter = {
   id: 'right-1234'
 }
 
-describe.only('Scene Manager', () => {
+describe('Scene Manager', () => {
   it('renders the correct default scene', () => {
     const scenes = [{
       sceneType: 'dialogScene',

@@ -28,6 +28,7 @@ export class ChoiceScene implements IAbstractScene {
     if (config.branchOptions) this.branchOptions = config.branchOptions;
     if (config.order) this.order = config.order;
     if (config.addScenes) this.addScenes = config.addScenes;
+    if (config.line) this.line = config.line;
   }
 
   public getBgImage() : string {
