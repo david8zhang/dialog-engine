@@ -6,6 +6,7 @@ export interface CutSceneProps {
   bgImage: string;
   line: string;
   update: Function;
+  gotoNextScene: Function;
 }
 
 class CutScene extends React.Component<CutSceneProps, any> {
@@ -20,7 +21,10 @@ class CutScene extends React.Component<CutSceneProps, any> {
           style={{ position: 'absolute', bottom: '0px', minHeight: '15%' }}
           text={this.props.line}
           isRight={false}
-          gotoNext={() => this.props.update()}
+          gotoNext={() => {
+            this.props.gotoNextScene();
+            this.props.update()
+          }}
         />
       </div>
     )

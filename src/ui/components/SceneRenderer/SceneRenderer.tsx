@@ -41,6 +41,7 @@ class SceneRenderer extends React.Component<SceneRendererProps, {}> {
       case 'cutScene': {
         return (
           <CutScene
+            gotoNextScene={sceneProps.gotoNextScene}
             line={line}
             bgImage={bgImage}
             update={() => this.forceUpdate()}
