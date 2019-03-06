@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Typist from 'react-typist';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import './dialog-box.css';
 
@@ -59,13 +57,10 @@ class DialogBox extends React.Component<DialogBoxProps, any> {
               this.props.onTypingDone();
             }
           }}
+          cursor={{ show: false }}
         >
           <p className='text'>
             {this.props.text}
-            <FontAwesomeIcon
-              icon={faCaretDown}
-              style={{ marginLeft: '10px' }}
-            />
           </p>
         </Typist>
       </div>
