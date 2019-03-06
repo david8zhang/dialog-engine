@@ -1,9 +1,11 @@
 import { IAbstractScene } from "../interface/IAbstractScene";
 import { LooseObject } from "../interface/LooseObject";
-import { ISceneManager } from "../interface/ISceneManager";
 import { IRenderManager } from "../interface/IRenderManager";
 
 export interface ChoiceSceneParams {
+  speaker : string,
+  leftCharacter: LooseObject,
+  rightCharacter: LooseObject,
   addScenes: Function;
   renderManager: IRenderManager;
   branchOptions : LooseObject;
@@ -13,15 +15,27 @@ export interface ChoiceSceneParams {
 }
 
 export class ChoiceScene implements IAbstractScene {
-  private renderManager : IRenderManager;
-  private branchOptions : LooseObject;
-  public order : number;
-  private gotoNextScene : Function;
+  // Characters & Dialog
+  private leftCharacter : LooseObject;
+  private rightCharacter : LooseObject;
   private bgImage : string;
   private line : string;
+  private speaker: string;
+
+  // Branching
+  private branchOptions : LooseObject;
   private addScenes : Function;
 
+  // Rendering & Scene Ordering
+  private renderManager : IRenderManager;
+  public order : number;
+  private gotoNextScene : Function;
+  
+
   constructor(config : LooseObject) {
+    if (config.leftCharacter) this.leftCharacter = config.leftCharacter;
+    if (config.rightCharacter) this.rightCharacter = config.rightCharacter;
+    if (config.speaker) this.speaker = config.speaker;
     if (config.bgImage) this.bgImage = config.bgImage;
     if (config.gotoNextScene) this.gotoNextScene = config.gotoNextScene;
     if (config.renderManager) this.renderManager = config.renderManager;
@@ -41,16 +55,19 @@ export class ChoiceScene implements IAbstractScene {
 
   public chooseBranchOption(option : LooseObject[]) {
     this.addScenes(option);
+    this.gotoNextScene();
   }
 
   public render() : LooseObject {
     const params = {
+      rightCharacter: this.rightCharacter,
+      leftCharacter: this.leftCharacter,
+      speaker: this.speaker,
       sceneType: 'choiceScene',
       bgImage: this.bgImage,
       branchOptions: this.branchOptions,
       chooseBranchOption: (option : LooseObject[]) => this.chooseBranchOption(option),
-      line: this.line,
-      gotoNextScene: this.gotoNextScene
+      line: this.line
     }
     return this.renderManager.choiceSceneRenderer(params);
   }

@@ -11,6 +11,7 @@ export interface DialogBoxProps {
   gotoNext: Function;
   isRight: boolean;
   style?: any;
+  onTypingDone?: Function;
 }
 
 class DialogBox extends React.Component<DialogBoxProps, any> {
@@ -51,7 +52,14 @@ class DialogBox extends React.Component<DialogBoxProps, any> {
           </p>
         </div>
       }
-        <Typist avgTypingDelay={5}>
+        <Typist
+          avgTypingDelay={5}
+          onTypingDone={() => {
+            if (this.props.onTypingDone) {
+              this.props.onTypingDone();
+            }
+          }}
+        >
           <p className='text'>
             {this.props.text}
             <FontAwesomeIcon

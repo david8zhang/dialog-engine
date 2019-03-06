@@ -80,6 +80,9 @@ describe('Scene Manager', () => {
   it('renders a choice scene and picks the correct branch path', () => {
     const scenes = [{
       sceneType: 'choiceScene',
+      leftCharacter: leftCharacter,
+      rightCharacter: rightCharacter,
+      speaker: 'right',
       branchOptions: {
         choice1: [{
           sceneType: 'dialogScene',

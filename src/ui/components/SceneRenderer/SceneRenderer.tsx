@@ -7,6 +7,7 @@ import { SceneManager } from '../../../managers/SceneManager';
 import { LooseObject } from '../../../interface/LooseObject';
 import DialogScene from '../DialogScene/DialogScene';
 import CutScene from '../CutScene/CutScene';
+import ChoiceScene from '../ChoiceScene/ChoiceScene';
 
 export interface SceneRendererProps {
   scenes: LooseObject[];
@@ -48,7 +49,17 @@ class SceneRenderer extends React.Component<SceneRendererProps, {}> {
       }
       case 'choiceScene': {
         return (
-          <div />
+          <ChoiceScene
+            chooseBranchOption={(option : LooseObject) => sceneProps.chooseBranchOption(option)}
+            sceneManager={this.sceneManager}
+            branchOptions={sceneProps.branchOptions}
+            leftCharacter={sceneProps.leftCharacter}
+            rightCharacter={sceneProps.rightCharacter}
+            side={sceneProps.speaker}
+            line={line}
+            bgImage={bgImage}
+            update={() => this.forceUpdate()}
+          />
         )
       }
       default:
@@ -61,6 +72,7 @@ class SceneRenderer extends React.Component<SceneRendererProps, {}> {
       return <div />
     }
     const sceneProps = this.sceneManager.render();
+    console.log(sceneProps);
     return (
       <div className='sceneRendererWrapper'>
         { this.renderScene(sceneProps) }

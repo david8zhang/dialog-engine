@@ -19,6 +19,9 @@ const renderManager = new RenderManager({});
 
 const choiceSceneParams = {
   sceneType: 'choiceScene',
+  leftCharacter,
+  rightCharacter,
+  speaker: 'right',
   branchOptions: {
     choice1: [{
       sceneType: 'dialogScene',

@@ -58,6 +58,9 @@ export class SceneManager implements ISceneManager {
         } as CutSceneParams;
       } else if (sceneType === 'choiceScene') {
         sceneParams = {
+          speaker: s.speaker,
+          leftCharacter: s.leftCharacter,
+          rightCharacter: s.rightCharacter,
           bgImage: s.bgImage,
           line: s.line,
           gotoNextScene: () => this.gotoNextScene(),
@@ -76,6 +79,7 @@ export class SceneManager implements ISceneManager {
   }
 
   public addScenes(scenes : LooseObject[]) {
+    console.log('Called this!');
     const serializedScenes = this.serializeScenes(scenes);
     this.scenes = this.scenes.concat(serializedScenes);
   }
