@@ -9,7 +9,7 @@ import {
 
 import './app.css';
 
-import { TestDialog, TestSceneManager, TestChoice, TestComplexChoice } from './samples';
+import { TestDialog, TestSceneManager, TestChoice, TestComplexChoice, TestMultiDialog } from './samples';
 
 class App extends React.Component<{}, {}> {
   render() {
@@ -18,6 +18,7 @@ class App extends React.Component<{}, {}> {
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <a href='/dialog'>Test Dialog Box</a>
           <a href='/choice'>Test Choice Box</a>
+          <a href='/multi'>Test Multi Speech</a>
           <a href='/shaggy'>Shaggy</a>
           <a href='/shrek'>Shrek</a>
         </div>
@@ -27,6 +28,7 @@ class App extends React.Component<{}, {}> {
             <Route path='/dialog' exact component={TestDialog} />
             <Route path='/shrek' exact component={TestSceneManager} />
             <Route path='/shaggy' exact component={TestComplexChoice} />
+            <Route path='/multi' exact component={TestMultiDialog} />
           </Switch>
         </Router>
       </div>

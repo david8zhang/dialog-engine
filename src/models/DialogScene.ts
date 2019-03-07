@@ -2,6 +2,8 @@ import { IAbstractScene } from "../interface/IAbstractScene";
 import { LooseObject } from "../interface/LooseObject";
 import { SpeechLine, SpeechLineParams } from "./SpeechLine";
 import { IRenderManager } from "../interface/IRenderManager";
+import { MultiSpeechLineParams, MultiSpeechLine } from "./MultiSpeechLine";
+import { IAbstractSpeechLine } from "../interface/IAbstractSpeechLine";
 
 export interface DialogParams {
   bgImage : string
@@ -13,7 +15,7 @@ export interface DialogParams {
 
 export class DialogScene implements IAbstractScene {
   private bgImage : string;
-  private speechLines : SpeechLine[];
+  private speechLines : IAbstractSpeechLine[];
   private currentSpeechLineIndex : number = 0;
   private gotoNextScene : Function;
   private renderManager : IRenderManager;
@@ -35,17 +37,29 @@ export class DialogScene implements IAbstractScene {
     this.bgImage = image;
   }
 
-  private serializeSpeechLines(speechLines : LooseObject[]) : SpeechLine[] {
+  private serializeSpeechLines(speechLines : LooseObject[]) : IAbstractSpeechLine[] {
     const serializedSpeechLines = speechLines.map((s : LooseObject) => {
-      const speechLineParams : SpeechLineParams = {
-        leftCharacter : s.leftCharacter,
-        rightCharacter : s.rightCharacter,
-        speaker: s.speaker,
-        line: s.line,
-        renderFunc: this.renderManager.speechLineRenderer,
-        gotoNextSpeechLine: () => this.gotoNextSpeechLine()
+      if (s.isMulti) {
+        const multiSpeechLineParams : MultiSpeechLineParams = {
+          leftCharacters: s.leftCharacters,
+          rightCharacters: s.rightCharacters,
+          speakerId: s.speakerId,
+          line: s.line,
+          renderFunc: this.renderManager.speechLineRenderer,
+          gotoNextSpeechLine: () => this.gotoNextSpeechLine()
+        }
+        return new MultiSpeechLine(multiSpeechLineParams);
+      } else {
+        const speechLineParams : SpeechLineParams = {
+          leftCharacter : s.leftCharacter,
+          rightCharacter : s.rightCharacter,
+          speaker: s.speaker,
+          line: s.line,
+          renderFunc: this.renderManager.speechLineRenderer,
+          gotoNextSpeechLine: () => this.gotoNextSpeechLine()
+        }
+        return new SpeechLine(speechLineParams);
       }
-      return new SpeechLine(speechLineParams);
     })
     return serializedSpeechLines;
   }

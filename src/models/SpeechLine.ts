@@ -1,4 +1,5 @@
 import { LooseObject } from "../interface/LooseObject";
+import { IAbstractSpeechLine } from "../interface/IAbstractSpeechLine";
 
 export interface SpeechLineParams {
   leftCharacter: LooseObject,
@@ -9,7 +10,7 @@ export interface SpeechLineParams {
   gotoNextSpeechLine: Function
 }
 
-export class SpeechLine {
+export class SpeechLine implements IAbstractSpeechLine {
   private leftCharacter : LooseObject;
   private rightCharacter : LooseObject;
   private speaker : string;
