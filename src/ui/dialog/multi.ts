@@ -47,6 +47,54 @@ const scenes : LooseObject[] = [{
         reaction: 'neutral'
       }
     }
+  }, {
+    line: 'Send me your credit card number and 3 digits on the back to help mario achieve the epic victory royal',
+    speakerId: 'voiceover-pete',
+    isMulti: true,
+    leftCharacters: {
+      'voiceover-pete': {
+        id: 'voiceover-pete',
+        reaction: 'neutral'
+      },
+      'chinese-mario': {
+        id: 'chinese-mario',
+        reaction: 'neutral'
+      }
+    },
+    rightCharacters: {
+      'beter-griffin': {
+        id: 'beter-griffin',
+        reaction: 'neutral'
+      },
+      'squidward-kujo': {
+        id: 'squidward-kujo',
+        reaction: 'neutral'
+      }
+    }
+  }, {
+    line: '妈妈咪呀',
+    speakerId: 'chinese-mario',
+    isMulti: true,
+    leftCharacters: {
+      'voiceover-pete': {
+        id: 'voiceover-pete',
+        reaction: 'neutral'
+      },
+      'chinese-mario': {
+        id: 'chinese-mario',
+        reaction: 'excited'
+      }
+    },
+    rightCharacters: {
+      'beter-griffin': {
+        id: 'beter-griffin',
+        reaction: 'neutral'
+      },
+      'squidward-kujo': {
+        id: 'squidward-kujo',
+        reaction: 'neutral'
+      }
+    }
   }]
 }]
 

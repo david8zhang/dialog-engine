@@ -16,21 +16,6 @@ export interface MultiSpeechLineProps {
 }
 
 class MultiSpeechLine extends React.Component<MultiSpeechLineProps, any> {
-  constructor(props : any) {
-    super(props);
-    this.state = {};
-  }
-  componentDidMount() {
-    let side = 'left';
-    let speakerName;
-    Object.keys(this.props.rightCharacterImgMap).forEach((characterId : string) => {
-      if (characterId === this.props.speakerId) {
-        side = 'right'
-        speakerName = this.props.sceneManager.getCharacterById(characterId);
-      }
-    });
-    this.setState({ side, speakerName });
-  }
   renderCharacters(isRight : boolean) {
     let charactersImageMap : LooseObject;
     let characterReactions : LooseObject;
@@ -55,7 +40,7 @@ class MultiSpeechLine extends React.Component<MultiSpeechLineProps, any> {
             style={{
               left: isRight ? '' : `${offset}px`,
               right: isRight ? `${offset}px` : '',
-              zIndex: 1000 - index,
+              zIndex: 1000 - index + (isActive ? 1000 : 0),
               opacity: characterReaction === reaction ? 1 : 0
             }}
           >
@@ -69,12 +54,20 @@ class MultiSpeechLine extends React.Component<MultiSpeechLineProps, any> {
     })
   }
   renderDialog() {
+    let side = 'left';
+    Object.keys(this.props.rightCharacterImgMap).forEach((characterId : string) => {
+      if (characterId === this.props.speakerId) {
+        side = 'right'
+      }
+    });
+    let speakerName = this.props.sceneManager.getCharacterById(this.props.speakerId).name;
     return (
       <DialogBox
+        style={{ zIndex: '3000' }}
         text={this.props.text}
-        characterName={this.state.speakerName}
+        characterName={speakerName}
         gotoNext={this.props.gotoNextSpeechLine}
-        isRight={this.state.side === 'right'}
+        isRight={side === 'right'}
       />
     )
   }
