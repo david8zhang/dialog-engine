@@ -1,6 +1,6 @@
 {
   "name": "dialog-engine",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "/dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": { 
+  "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
