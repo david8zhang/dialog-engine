@@ -2,7 +2,7 @@
   "name": "dialog-engine",
   "version": "1.0.1",
   "description": "",
-  "main": "/dist/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers ts:ts-node/register ./tests/**/*.ts",
     "start:dev": "webpack-dev-server",
