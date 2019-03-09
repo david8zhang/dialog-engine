@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
+  "types": "build/index.d.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --compilers ts:ts-node/register ./tests/**/*.ts",
     "start:dev": "webpack-dev-server",
