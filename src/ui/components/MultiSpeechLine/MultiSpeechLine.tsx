@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LooseObject } from '../../../interface/LooseObject';
 import DialogBox from '../DialogBox/DialogBox';
 import { ISceneManager } from '../../../interface/ISceneManager';
-import './multi-speech-line.css';
+import '../../../css/multi-speech-line.css';
 
 export interface MultiSpeechLineProps {
   text: string;

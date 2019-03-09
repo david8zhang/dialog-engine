@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './choiceScene.css';
+import '../../../css/choiceScene.css';
 import DialogBox from '../DialogBox/DialogBox';
 import { LooseObject } from '../../../interface/LooseObject';
 import { ISceneManager } from '../../../interface/ISceneManager';

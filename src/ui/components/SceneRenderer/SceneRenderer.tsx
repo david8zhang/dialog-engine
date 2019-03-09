@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ISceneManager } from '../../../interface/ISceneManager';
 
 /** CSS files */
-import './sceneRenderer.css';
+import '../../../css/sceneRenderer.css';
 import { SceneManager } from '../../../managers/SceneManager';
 import { LooseObject } from '../../../interface/LooseObject';
 import DialogScene from '../DialogScene/DialogScene';

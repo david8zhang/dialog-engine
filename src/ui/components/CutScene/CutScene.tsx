@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './cutscene.css';
+import '../../../css/cutscene.css';
 import DialogBox from '../DialogBox/DialogBox';
 
 export interface CutSceneProps {

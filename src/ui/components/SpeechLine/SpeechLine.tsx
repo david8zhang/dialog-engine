@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './speech-line.css';
+import '../../../css/speech-line.css';
 import DialogBox from '../DialogBox/DialogBox';
 import { LooseObject } from '../../../interface/LooseObject';
 

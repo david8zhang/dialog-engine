@@ -1,0 +1,32 @@
+.multiSpeechLineWrapper {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.multiCharactersWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.multiCharacter {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  filter: brightness(50%);
+  top: -300px;
+}
+
+.multiCharacter img {
+  width: 100%;
+  height: 100%;
+}
+
+.right {
+  right: 20px;
+}
+
+.active {
+  filter: brightness(100%);
+}
+

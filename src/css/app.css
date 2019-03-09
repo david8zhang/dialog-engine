@@ -1,0 +1,13 @@
+body {
+  margin: 0px;
+  height: 100vh;
+}
+
+.app {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.root {
+  height: 100%;
+}

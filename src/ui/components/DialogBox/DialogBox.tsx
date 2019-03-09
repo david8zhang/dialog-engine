@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Typist from 'react-typist';
 
-import './dialog-box.css';
+import '../../../css/dialog-box.css';
 
 export interface DialogBoxProps {
   characterName?: string;

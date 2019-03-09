@@ -3,7 +3,7 @@ import { LooseObject } from '../../../interface/LooseObject';
 import SpeechLine from '../SpeechLine/SpeechLine';
 import { ISceneManager } from '../../../interface/ISceneManager';
 
-import './dialogScene.css';
+import '../../../css/dialogScene.css';
 import MultiSpeechLine from '../MultiSpeechLine/MultiSpeechLine';
 
 export interface DialogSceneProps {
